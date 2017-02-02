@@ -1,9 +1,9 @@
 import webpack from 'webpack';
-import path from 'path'; 
+import path from 'path';
 
 export default {
   debug: true,
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   noInfo: false,
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
