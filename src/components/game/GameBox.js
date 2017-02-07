@@ -16,6 +16,7 @@ class GameBox extends React.Component {
 
 
     this.updateGuess = this.updateGuess.bind(this);
+    this.guessValid = this.guessValid.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,7 +29,27 @@ class GameBox extends React.Component {
   updateGuess(event) {
     let guess = event.target.value;
     console.log(guess);
+    if(!this.guessValid(guess)) {
+      return;
+    }
+    //this.props.actions.makeGuess(this.props.game.id, this.props.game.player[0].id, guess);
     return this.setState({guess: guess});
+  }
+
+  guessValid(guess) {
+    // make sure guess only contains letters from game
+    let letters = Object.assign([], this.props.game.letters);
+
+    for(let i = 0; i < guess.length; i++) {
+      const letterIndex = letters.indexOf(guess.charAt(i));
+      if(letterIndex == -1) {
+        return false;
+      }
+      letters.splice(letterIndex, 1);
+    }
+
+    return true;
+
   }
 
   render() {
@@ -53,7 +74,8 @@ class GameBox extends React.Component {
 }
 
 GameBox.propTypes = {
-  game: PropTypes.object.isRequired
+  game: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
