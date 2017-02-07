@@ -1,5 +1,6 @@
 import delay from './delay';
-
+import wordList from 'word-list-json';
+//const wordList = ['a', 'mop'];
 
 //fake games
 const games = [
@@ -7,15 +8,13 @@ const games = [
     id: 0,
     letters: ['l','m','n','o','p'],
     timeRemaining: 30,
-    players: [{id: 1, name:'Bibby'}, {id: 2, name: 'Friddy'}],
-    playerGuesses: [{playerId: 1, guess: "no"}, {playerId: 2, guess: "on"}]
+    players: [{id: 1, name:'Bibby', score: 0, guess: "no"}, {id: 2, name: 'Friddy', score: 0, guess: "on"}]
   },
   {
     id: 1,
     letters: ['n','e','a','t','r','s'],
     timeRemaining: 24,
-    players: [{id: 3, name:'Jonny'}, {id: 4, name: 'George'}],
-    playerGuesses: [{playerId: 3, guess: "ten"}, {playerId: 4, guess: "neat"}]
+    players: [{id: 3, name:'Jonny', score: 0, guess: "rest"}, {id: 4, name: 'George', score: 0, guess: "tea"}]
   }
 ];
 
@@ -47,7 +46,21 @@ class GameApi {
   static makeGuess(gameId, playerId, guess) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-
+        //let game = games.find(game => {
+        //  return game.id == gameId;
+        //});
+        //let player = game.players.find(player => {
+        //  return player.id == playerId;
+        //});
+        //console.log(wordList);
+        if(wordList.indexOf(guess) != -1) {
+          //Object.assign(player, {guess: guess});
+          console.log('yay');
+          resolve(true);
+        } else {
+          console.log('no word');
+          resolve(false);
+        }
       }, delay);
     });
   }

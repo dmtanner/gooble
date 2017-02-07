@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const GamePlay = ({letters, guess, onChange}) => {
+const GamePlay = ({letters, guess, guessCorrect, onChange}) => {
   return (
     <div className="well">
       <p className="text-center text-uppercase">
@@ -8,12 +8,13 @@ const GamePlay = ({letters, guess, onChange}) => {
         letter + ' '
       )}
       </p>
-      <div className="row form-group">
+      <div className={guessCorrect ? "row form-group has-success" : "row form-group has-warning"}>
         <div className="col-md-4 col-md-offset-4">
           <label htmlFor="guess">GUESS:</label>
           <input
             type="text"
-            className="text-center text-uppercase"
+            className="form-control text-center text-uppercase"
+            bsStyle="success"
             id="guess"
             onChange={onChange}
             value={guess}
@@ -27,7 +28,8 @@ const GamePlay = ({letters, guess, onChange}) => {
 GamePlay.propTypes = {
   letters: PropTypes.array.isRequired,
   guess: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  guessCorrect: PropTypes.bool.isRequired
 };
 
 export default GamePlay;

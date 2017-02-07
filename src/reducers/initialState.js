@@ -3,8 +3,10 @@ export default {
   courses: [],
   ajaxCallsInProgress: 0,
   game: {
-    gameId: 0,
-    players: [{id: 0, name: ''}, {id: 0, name: ''}],
-    letters: []
+    id: 0,
+    letters: [],
+    currentPlayer: {id: 0, name: '', score: 0},
+    otherPlayers: [{id: 0, name: '', score: 0}],
+    guessCorrect: false
   }
 };

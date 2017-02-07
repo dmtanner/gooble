@@ -1,18 +1,18 @@
 import * as types from './actionTypes';
 import gameApi from '../api/mockGameApi';
 
-export function makeGuessSuccess(guess) {
-  return { type: types.MAKE_GUESS_SUCCESS, guess };
+export function makeGuessSuccess(guessCorrect) {
+  return { type: types.MAKE_GUESS_SUCCESS, guessCorrect };
 }
 
 export function loadGameSuccess(game) {
   return { type: types.LOAD_GAME_SUCCESS, game };
 }
 
-export function makeGuess(guess) {
+export function makeGuess(gameId, playerId, guess) {
   return function(dispatch, getState) {
-    return gameApi.makeGuess().then(guess => {
-      dispatch(makeGuessSuccess(guess));
+    return gameApi.makeGuess(gameId, playerId, guess).then(guessCorrect => {
+      dispatch(makeGuessSuccess(guessCorrect));
     }).catch(error => {
       throw(error);
     });

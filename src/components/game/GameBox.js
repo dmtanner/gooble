@@ -28,11 +28,14 @@ class GameBox extends React.Component {
 
   updateGuess(event) {
     let guess = event.target.value;
-    console.log(guess);
     if(!this.guessValid(guess)) {
       return;
     }
-    //this.props.actions.makeGuess(this.props.game.id, this.props.game.player[0].id, guess);
+    console.log(guess);
+    this.props.actions.makeGuess(this.props.game.id, this.props.game.currentPlayer.id, guess)
+      .then(isWord => {
+        console.log(isWord);
+      });
     return this.setState({guess: guess});
   }
 
@@ -56,15 +59,16 @@ class GameBox extends React.Component {
     return (
       <div>
         <div className="row">
-          <PlayerInfo player={this.props.game.players[0]} />
+          <PlayerInfo player={this.props.game.currentPlayer} />
           <div className="col-md-4"></div>
-          <PlayerInfo player={this.props.game.players[1]} />
+          <PlayerInfo player={this.props.game.otherPlayers[0]} />
         </div>
         <div>
           <GamePlay
             letters={this.props.game.letters}
             guess={this.state.guess}
             onChange={this.updateGuess}
+            guessCorrect={this.props.game.guessCorrect}
           />
         </div>
       </div>
