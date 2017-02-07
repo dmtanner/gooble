@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
+import {loadGame} from './actions/gameActions';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
@@ -15,6 +16,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
+store.dispatch(loadGame(1));  // temporarily load game 0 CHANGE
 
 render(
   <Provider store={store}>

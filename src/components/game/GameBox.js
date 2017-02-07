@@ -9,29 +9,40 @@ class GameBox extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.state = {
+      //game: {players: [{name: 'YES'}, {name: 'MAN'}], letters: ['n']},
+      guess: ''
+    };
+
+
     this.updateGuess = this.updateGuess.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.game !== nextProps.game[0]) {
+      // populates form when course is loaded
+      //this.setState({game: Object.assign({}, nextProps.game[0])});
+    }
+  }
+
   updateGuess(event) {
-    const field = event.target.name;
-    //console.log(field);
-    //let currentGuess = this.state.currentGuess;
-    let currentGuess = event.target.value;
-    return this.setState({currentGuess});
+    let guess = event.target.value;
+    console.log(guess);
+    return this.setState({guess: guess});
   }
 
   render() {
     return (
       <div>
         <div className="row">
-          <PlayerInfo player={{name: "Bob"}} />
+          <PlayerInfo player={this.props.game.players[0]} />
           <div className="col-md-4"></div>
-          <PlayerInfo player={{name: "Joe"}} />
+          <PlayerInfo player={this.props.game.players[1]} />
         </div>
         <div>
           <GamePlay
-            letters={['l','q','n','e','t']}
-            currentGuess={'ten'}
+            letters={this.props.game.letters}
+            guess={this.state.guess}
             onChange={this.updateGuess}
           />
         </div>
@@ -42,12 +53,12 @@ class GameBox extends React.Component {
 }
 
 GameBox.propTypes = {
-  players: PropTypes.array.isRequired
+  game: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    players: state.players
+    game: state.game
   };
 }
 

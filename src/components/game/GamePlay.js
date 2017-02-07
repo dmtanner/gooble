@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const GamePlay = ({letters, currentGuess, onChange}) => {
+const GamePlay = ({letters, guess, onChange}) => {
   return (
     <div className="well">
       <p className="text-center text-uppercase">
@@ -11,7 +11,13 @@ const GamePlay = ({letters, currentGuess, onChange}) => {
       <div className="row form-group">
         <div className="col-md-4 col-md-offset-4">
           <label htmlFor="guess">GUESS:</label>
-          <input type="text" className="text-center text-uppercase" id="guess" onChange={onChange} value={currentGuess}/>
+          <input
+            type="text"
+            className="text-center text-uppercase"
+            id="guess"
+            onChange={onChange}
+            value={guess}
+          />
         </div>
       </div>
     </div>
@@ -20,7 +26,7 @@ const GamePlay = ({letters, currentGuess, onChange}) => {
 
 GamePlay.propTypes = {
   letters: PropTypes.array.isRequired,
-  currentGuess: PropTypes.string.isRequired,
+  guess: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
