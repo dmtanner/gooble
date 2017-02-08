@@ -4,7 +4,7 @@ import ReactCountdownClock from 'react-countdown-clock';
 const GamePlay = ({letters, guess, guessCorrect, onChange, onTimesUp}) => {
   return (
     <div className="well">
-      <div className="center">
+      <div id="clock" className="row text-center">
         <ReactCountdownClock
           seconds={20}
           color="#116cff"
@@ -14,7 +14,7 @@ const GamePlay = ({letters, guess, guessCorrect, onChange, onTimesUp}) => {
           onComplete={onTimesUp}
         />
       </div>
-      <p className="text-center text-uppercase">
+      <p className="row text-center text-uppercase">
       {letters.map(letter =>
         letter + ' '
       )}

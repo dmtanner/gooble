@@ -66,7 +66,7 @@ class GameBox extends React.Component {
         <div className="row">
           <PlayerInfo player={this.props.game.currentPlayer} />
           <div className="col-md-4 thumbnail">
-            <img src={blocks} className="img-responsive" />
+            <img src={blocks} className="img-rounded" height="50%"/>
           </div>
           <PlayerInfo player={this.props.game.otherPlayers[0]} />
         </div>
