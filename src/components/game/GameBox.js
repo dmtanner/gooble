@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as gameActions from '../../actions/gameActions';
 import PlayerInfo from './PlayerInfo';
 import GamePlay from './GamePlay';
+import blocks from '../../img/blocks.svg';
 
 class GameBox extends React.Component {
   constructor(props, context) {
@@ -57,9 +58,11 @@ class GameBox extends React.Component {
   render() {
     return (
       <div>
-        <div className="row">
+        <div className="row" >
           <PlayerInfo player={this.props.game.currentPlayer} />
-          <div className="col-md-4"></div>
+          <div className="col-md-4">
+            <img src={blocks} className="img-responsive" />
+          </div>
           <PlayerInfo player={this.props.game.otherPlayers[0]} />
         </div>
         <div className="row">
