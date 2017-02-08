@@ -1,8 +1,19 @@
 import React, {PropTypes} from 'react';
+import ReactCountdownClock from 'react-countdown-clock';
 
-const GamePlay = ({letters, guess, guessCorrect, onChange}) => {
+const GamePlay = ({letters, guess, guessCorrect, onChange, onTimesUp}) => {
   return (
     <div className="well">
+      <div className="center">
+        <ReactCountdownClock
+          seconds={20}
+          color="#116cff"
+          size={50}
+          alpha={1.0}
+          showMilliseconds={false}
+          onComplete={onTimesUp}
+        />
+      </div>
       <p className="text-center text-uppercase">
       {letters.map(letter =>
         letter + ' '
@@ -29,7 +40,8 @@ GamePlay.propTypes = {
   letters: PropTypes.array.isRequired,
   guess: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  guessCorrect: PropTypes.bool.isRequired
+  guessCorrect: PropTypes.bool.isRequired,
+  onTimesUp: PropTypes.func.isRequired
 };
 
 export default GamePlay;

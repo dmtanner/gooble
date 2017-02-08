@@ -18,6 +18,7 @@ class GameBox extends React.Component {
 
     this.updateGuess = this.updateGuess.bind(this);
     this.guessValid = this.guessValid.bind(this);
+    this.timesUp = this.timesUp.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,12 +56,16 @@ class GameBox extends React.Component {
 
   }
 
+  timesUp() {
+    return this.setState({guess: "DONE!"});
+  }
+
   render() {
     return (
       <div>
-        <div className="row" >
+        <div className="row">
           <PlayerInfo player={this.props.game.currentPlayer} />
-          <div className="col-md-4">
+          <div className="col-md-4 thumbnail">
             <img src={blocks} className="img-responsive" />
           </div>
           <PlayerInfo player={this.props.game.otherPlayers[0]} />
@@ -71,6 +76,7 @@ class GameBox extends React.Component {
             guess={this.state.guess}
             onChange={this.updateGuess}
             guessCorrect={this.props.game.guessCorrect}
+            onTimesUp={this.timesUp}
           />
         </div>
       </div>
