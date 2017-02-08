@@ -4,6 +4,7 @@ const PlayerInfo = ({player}) => {
   return (
     <div className="well col-md-4">
       <h2>{player.name}</h2>
+      <h3>Score: {player.score}</h3>
     </div>
   );
 };

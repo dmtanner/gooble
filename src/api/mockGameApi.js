@@ -55,10 +55,8 @@ class GameApi {
         //console.log(wordList);
         if(wordList.indexOf(guess) != -1) {
           //Object.assign(player, {guess: guess});
-          console.log('yay');
           resolve(true);
         } else {
-          console.log('no word');
           resolve(false);
         }
       }, delay);
