@@ -11,9 +11,12 @@ class GameBox extends React.Component {
     super(props, context);
 
     this.state = {
-      //game: {players: [{name: 'YES'}, {name: 'MAN'}], letters: ['n']},
       guess: ''
     };
+
+    // Create and load a new game
+    let myId = 93724;
+    this.props.actions.createGame(myId);
 
 
     this.updateGuess = this.updateGuess.bind(this);
@@ -33,10 +36,7 @@ class GameBox extends React.Component {
     if(!this.guessValid(guess)) {
       return;
     }
-    this.props.actions.makeGuess(this.props.game.id, this.props.game.currentPlayer.id, guess)
-      .then(isWord => {
-        console.log(isWord);
-      });
+    //this.props.actions.checkWord(guess);
     return this.setState({guess: guess});
   }
 
@@ -57,7 +57,9 @@ class GameBox extends React.Component {
   }
 
   timesUp() {
-    return this.setState({guess: "DONE!"});
+    console.log("TIMES UP");
+    this.props.actions.checkWord(this.state.guess);
+    this.props.actions.makeGuess(this.props.game.id, this.props.game.currentPlayer.id, this.state.guess);
   }
 
   render() {
@@ -66,7 +68,7 @@ class GameBox extends React.Component {
         <div className="row">
           <PlayerInfo player={this.props.game.currentPlayer} />
           <div className="col-md-4 thumbnail">
-            <img src={blocks} className="img-rounded" height="50%"/>
+            <img src={blocks} className="img-responsive" />
           </div>
           <PlayerInfo player={this.props.game.otherPlayers[0]} />
         </div>

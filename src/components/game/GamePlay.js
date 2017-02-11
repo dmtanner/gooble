@@ -6,7 +6,7 @@ const GamePlay = ({letters, guess, guessCorrect, onChange, onTimesUp}) => {
     <div className="well">
       <div id="clock" className="row text-center">
         <ReactCountdownClock
-          seconds={20}
+          seconds={5}
           color="#116cff"
           size={50}
           alpha={1.0}
@@ -14,7 +14,7 @@ const GamePlay = ({letters, guess, guessCorrect, onChange, onTimesUp}) => {
           onComplete={onTimesUp}
         />
       </div>
-      <p className="row text-center text-uppercase">
+      <p id="letters" className="row text-center text-uppercase">
       {letters.map(letter =>
         letter + ' '
       )}

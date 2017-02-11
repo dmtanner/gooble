@@ -19,5 +19,9 @@ nav {
 #clock {
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px;
+  height: 60px;
+}
+
+#letters {
+  font-size: 25px;
 }

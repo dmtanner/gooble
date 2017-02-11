@@ -16,7 +16,6 @@ import '../node_modules/toastr/build/toastr.min.css';
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
-store.dispatch(loadGame(1));  // temporarily load game 0 CHANGE
 
 render(
   <Provider store={store}>
